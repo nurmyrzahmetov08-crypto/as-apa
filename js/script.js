@@ -244,17 +244,26 @@
     guests.value = yes ? n : 0;
 
     btn.disabled = true; btn.textContent = 'Жіберілуде…';
-    fetch('/', {
+    var payload = {
+      fullname: name,
+      attend: checked.value,
+      guests: yes ? n : 0,
+      phone: $('phone').value.trim(),
+      note: $('note').value.trim(),
+      company: form.company ? form.company.value : '',
+      invited: guest || ''
+    };
+    fetch('/api/rsvp', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form)).toString()
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     }).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       store.set({ name: name, yes: yes, count: yes ? n : 0 });
       showDone(name, yes, yes ? n : 0);
       $('card').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }).catch(function () {
-      err.textContent = 'Жіберу мүмкін болмады. Интернетті тексеріп, қайта көріңіз.';
+      err.textContent = 'Жіберу мүмкін болмады. Сәлден соң қайта көріңіз.';
     }).then(function () {
       btn.disabled = false; btn.textContent = 'Жауапты жіберу';
     });

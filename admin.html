@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Әкімші панелі — Жылдық ас</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b08a4f;--gold-d:#87622d;--ink:#352a21;--muted:#7f7266;--line:#e6d8c2;--paper:#fffdf9;--bg:#f7f0e6;--green:#4f7a4a;--red:#a2453a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,#faf5ee,#f3eadc);min-height:100vh}
+button,input,select{font:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
+h1{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:34px;margin:0;color:var(--gold-d)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.top small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:var(--gold)}
+.btn.gold{background:linear-gradient(180deg,#c39d62,#94702f);color:#fff;border:0}
+.btn.ghost{background:transparent}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px}
+.stat .k{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.stat .v{font-size:34px;font-weight:700;margin-top:4px;line-height:1}
+.stat.main{background:linear-gradient(180deg,#fdf6e8,#f6e9cf);border-color:#e3cfa6}
+.stat.main .v{color:var(--gold-d)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.bar input{flex:1;min-width:200px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;outline:none}
+.bar input:focus{border-color:var(--gold)}
+.tabs{display:flex;background:#fff;border:1px solid var(--line);border-radius:10px;padding:3px}
+.tabs button{border:0;background:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;color:var(--muted)}
+.tabs button.on{background:#f4e8d2;color:var(--gold-d)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;background:#fbf6ee;padding:12px}
+td{padding:12px;border-top:1px solid #f0e6d6;vertical-align:top}
+tr:hover td{background:#fffaf2}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.yes{background:#e6f0e3;color:var(--green)}
+.no{background:#f6e3df;color:var(--red)}
+.num{font-weight:700;font-size:16px}
+.muted{color:var(--muted)}
+.del{border:0;background:none;color:#b9a99a;cursor:pointer;padding:4px;border-radius:6px}
+.del:hover{color:var(--red);background:#f6e3df}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+.login{max-width:380px;margin:12vh auto;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:30px 24px;text-align:center;box-shadow:0 18px 50px rgba(140,105,55,.12)}
+.login input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;margin:18px 0 12px;font-size:16px;outline:none}
+.login input:focus{border-color:var(--gold)}
+.login .btn{width:100%;justify-content:center;padding:13px}
+.err{color:var(--red);font-size:14px;min-height:1.2em;margin-top:10px}
+.upd{font-size:12px;color:var(--muted)}
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  thead{display:none}
+  table,tbody,tr,td{display:block;width:100%}
+  tr{border-top:1px solid #f0e6d6;padding:10px 12px;position:relative}
+  td{border:0;padding:3px 0}
+  td[data-l]::before{content:attr(data-l)": ";color:var(--muted);font-size:12px}
+  td.c-del{position:absolute;top:8px;right:8px;width:auto}
+  td.c-n{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="login" id="login">
+  <h1>Әкімші панелі</h1>
+  <div class="muted" style="margin-top:6px">Жылдық асқа жауаптар</div>
+  <form id="loginForm">
+    <input type="password" id="pass" placeholder="Құпия сөз" autocomplete="current-password" required>
+    <button class="btn gold" type="submit">Кіру</button>
+  </form>
+  <div class="err" id="loginErr"></div>
+</div>
+
+<div class="wrap" id="app" hidden>
+  <div class="top">
+    <div>
+      <h1>Асқа жауаптар</h1>
+      <small>Хамзақызы Күлжанның жылдық асы · 14 қараша, 12:00</small>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" id="refresh" type="button">↻ Жаңарту</button>
+      <button class="btn gold" id="excel" type="button">⬇ Excel жүктеу</button>
+      <button class="btn ghost" id="logout" type="button">Шығу</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat main"><div class="k">Келетін адам саны</div><div class="v" id="sPeople">0</div></div>
+    <div class="stat"><div class="k">Келемін (жауап)</div><div class="v" id="sYes">0</div></div>
+    <div class="stat"><div class="k">Келе алмаймын</div><div class="v" id="sNo">0</div></div>
+    <div class="stat"><div class="k">Барлық жауап</div><div class="v" id="sAll">0</div></div>
+  </div>
+
+  <div class="bar">
+    <input type="search" id="q" placeholder="Аты, телефон немесе ескерту бойынша іздеу…">
+    <div class="tabs" id="tabs">
+      <button type="button" data-f="all" class="on">Барлығы</button>
+      <button type="button" data-f="yes">Келеді</button>
+      <button type="button" data-f="no">Келмейді</button>
+    </div>
+    <span class="upd" id="upd"></span>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead><tr><th>№</th><th>Аты-жөні</th><th>Жауабы</th><th>Адам</th><th>Телефон</th><th>Ескерту</th><th>Уақыты</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty" hidden>Әзірге жауап жоқ</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+<script>
+(function () {
+  var KEY = 'as-admin-pass';
+  var $ = function (id) { return document.getElementById(id); };
+  var items = [], filter = 'all', timer = null;
+
+  function getPass() { try { return sessionStorage.getItem(KEY) || ''; } catch (e) { return window.__p || ''; } }
+  function setPass(p) { try { sessionStorage.setItem(KEY, p); } catch (e) { window.__p = p; } }
+  function clearPass() { try { sessionStorage.removeItem(KEY); } catch (e) { window.__p = ''; } }
+
+  function api(method, url) {
+    return fetch(url, { method: method, headers: { Authorization: 'Bearer ' + getPass() }, cache: 'no-store' })
+      .then(function (r) { return r.json().then(function (d) { d._status = r.status; return d; }); });
+  }
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function fmt(iso) {
+    var d = new Date(iso);
+    return d.toLocaleString('ru-RU', { timeZone: 'Asia/Almaty', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  }
+
+  function load(silent) {
+    return api('GET', '/api/admin').then(function (d) {
+      if (d._status === 401) { logout('Құпия сөз қате'); return; }
+      if (!d.ok) { $('upd').textContent = 'Қате: ' + (d.error || d._status); return; }
+      items = d.items || [];
+      render();
+      $('upd').textContent = 'Жаңартылды: ' + new Date().toLocaleTimeString('ru-RU', { timeZone: 'Asia/Almaty', hour: '2-digit', minute: '2-digit' });
+    }).catch(function () { if (!silent) $('upd').textContent = 'Байланыс қатесі'; });
+  }
+
+  function render() {
+    var yes = items.filter(function (i) { return i.attend === 'Келемін'; });
+    $('sAll').textContent = items.length;
+    $('sYes').textContent = yes.length;
+    $('sNo').textContent = items.length - yes.length;
+    $('sPeople').textContent = yes.reduce(function (s, i) { return s + (+i.guests || 0); }, 0);
+
+    var q = $('q').value.trim().toLowerCase();
+    var list = items.filter(function (i) {
+      if (filter === 'yes' && i.attend !== 'Келемін') return false;
+      if (filter === 'no' && i.attend === 'Келемін') return false;
+      if (!q) return true;
+      return [i.fullname, i.phone, i.note, i.invited].join(' ').toLowerCase().indexOf(q) !== -1;
+    });
+
+    $('empty').hidden = list.length > 0;
+    $('rows').innerHTML = list.map(function (i, k) {
+      var y = i.attend === 'Келемін';
+      return '<tr>' +
+        '<td class="c-n muted">' + (list.length - k) + '</td>' +
+        '<td><b>' + esc(i.fullname) + '</b>' + (i.invited && i.invited !== i.fullname ? '<div class="muted" style="font-size:12px">шақыру: ' + esc(i.invited) + '</div>' : '') + '</td>' +
+        '<td><span class="pill ' + (y ? 'yes' : 'no') + '">' + (y ? 'Келеді' : 'Келмейді') + '</span></td>' +
+        '<td data-l="Адам" class="num">' + (y ? i.guests : '—') + '</td>' +
+        '<td data-l="Телефон">' + (i.phone ? '<a href="tel:' + esc(i.phone.replace(/[^\d+]/g, '')) + '">' + esc(i.phone) + '</a>' : '<span class="muted">—</span>') + '</td>' +
+        '<td data-l="Ескерту">' + (i.note ? esc(i.note) : '<span class="muted">—</span>') + '</td>' +
+        '<td data-l="Уақыты" class="muted">' + fmt(i.createdAt) + '</td>' +
+        '<td class="c-del"><button class="del" title="Өшіру" data-id="' + esc(i.id) + '">✕</button></td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  $('rows').addEventListener('click', function (e) {
+    var b = e.target.closest('.del'); if (!b) return;
+    var it = items.find(function (i) { return i.id === b.dataset.id; });
+    if (!confirm('«' + (it ? it.fullname : '') + '» жауабын өшіру керек пе?')) return;
+    api('DELETE', '/api/admin?id=' + encodeURIComponent(b.dataset.id)).then(function () { load(); });
+  });
+
+  $('q').addEventListener('input', render);
+  $('tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    filter = b.dataset.f;
+    [].forEach.call($('tabs').children, function (x) { x.classList.toggle('on', x === b); });
+    render();
+  });
+  $('refresh').addEventListener('click', function () { load(); });
+
+  $('excel').addEventListener('click', function () {
+    if (!window.XLSX) { alert('Excel кітапханасы жүктелмеді, бетті жаңартып көріңіз.'); return; }
+    var sorted = items.slice().sort(function (a, b) { return a.createdAt < b.createdAt ? -1 : 1; });
+    var rows = sorted.map(function (i, k) {
+      var y = i.attend === 'Келемін';
+      return { '№': k + 1, 'Аты-жөні': i.fullname, 'Жауабы': y ? 'Келеді' : 'Келмейді', 'Адам саны': y ? +i.guests : 0,
+        'Телефон': i.phone || '', 'Ескерту': i.note || '', 'Шақыру сілтемесі': i.invited || '', 'Уақыты': fmt(i.createdAt) };
+    });
+    var people = sorted.reduce(function (s, i) { return s + (i.attend === 'Келемін' ? +i.guests || 0 : 0); }, 0);
+    rows.push({});
+    rows.push({ 'Аты-жөні': 'ЖАЛПЫ келетін адам саны:', 'Адам саны': people });
+    var ws = XLSX.utils.json_to_sheet(rows);
+    ws['!cols'] = [{ wch: 5 }, { wch: 28 }, { wch: 12 }, { wch: 11 }, { wch: 18 }, { wch: 40 }, { wch: 20 }, { wch: 16 }];
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Жауаптар');
+    var d = new Date().toLocaleDateString('ru-RU', { timeZone: 'Asia/Almaty' }).replace(/\./g, '-');
+    XLSX.writeFile(wb, 'as-zhauaptar-' + d + '.xlsx');
+  });
+
+  function showApp() {
+    $('login').hidden = true; $('app').hidden = false;
+    load();
+    clearInterval(timer); timer = setInterval(function () { load(true); }, 30000);
+  }
+  function logout(msg) {
+    clearPass(); clearInterval(timer);
+    $('app').hidden = true; $('login').hidden = false;
+    $('loginErr').textContent = msg || ''; $('pass').value = ''; $('pass').focus();
+  }
+  $('logout').addEventListener('click', function () { logout(); });
+
+  $('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var p = $('pass').value; if (!p) return;
+    $('loginErr').textContent = 'Тексерілуде…';
+    setPass(p);
+    api('GET', '/api/admin').then(function (d) {
+      if (d._status === 401) { logout('Құпия сөз қате'); return; }
+      if (d.error === 'no_password_set') { logout('Netlify-да ADMIN_PASSWORD орнатылмаған'); return; }
+      $('loginErr').textContent = '';
+      showApp();
+    }).catch(function () { $('loginErr').textContent = 'Байланыс қатесі'; });
+  });
+
+  if (getPass()) showApp();
+})();
+</script>
+</body>
+</html>
