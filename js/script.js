@@ -5,7 +5,7 @@
 
   var EVENT_UTC = Date.UTC(2026, 10, 14, 7, 0, 0);      // 14 қараша 2026, 12:00 (Алматы, UTC+5)
   var EVENT_END_UTC = Date.UTC(2026, 10, 14, 10, 0, 0); // шамамен 15:00
-  var TITLE = 'Хамзақызы Құлжанның жылдық асы';
+  var TITLE = 'Хамзақызы Күлжанның жылдық асы';
   var PLACE = 'Лермонтова 18, Ayaulym hall';
   var STORE_KEY = 'as-kulzhan-rsvp';
   var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -156,7 +156,7 @@
     '&text=' + encodeURIComponent(TITLE) +
     '&dates=' + icsDate(EVENT_UTC) + '/' + icsDate(EVENT_END_UTC) +
     '&location=' + encodeURIComponent(PLACE) +
-    '&details=' + encodeURIComponent('Аяулы анамыз Хамзақызы Құлжанның жылдық асы. ' + location.href.split('?')[0]);
+    '&details=' + encodeURIComponent('Аяулы анамыз Хамзақызы Күлжанның жылдық асы. ' + location.href.split('?')[0]);
   $('icsBtn').addEventListener('click', function () {
     var ics = [
       'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//as-apa//kk', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
