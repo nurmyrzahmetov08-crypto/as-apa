@@ -64,10 +64,44 @@
     else if (!userPaused && musicBtn.classList.contains('on')) { audio.play().catch(function () {}); }
   });
 
+  /* ---------- 2б. Дауыстық шақыру (audio/voice.mp3) ---------- */
+  var voice = $('voice'), voiceBtn = $('voiceBtn'), voiceBox = $('voiceBox');
+  var voiceReady = false, voicePlayedOnce = false;
+  function markVoiceReady() { if (voiceReady) return; voiceReady = true; voiceBox.hidden = false; }
+  voice.addEventListener('loadedmetadata', markVoiceReady);
+  voice.addEventListener('canplay', markVoiceReady);
+  if (voice.readyState >= 1) markVoiceReady();
+  voice.addEventListener('error', function () { voiceReady = false; voiceBox.hidden = true; });
+  function duck(on) { if (musicBtn.classList.contains('on')) fadeTo(on ? 0.12 : TARGET_VOL, on ? 700 : 1800); }
+  voice.addEventListener('play', function () { if (voice.muted) return; voiceBtn.classList.add('on'); $('voiceText').textContent = 'Тоқтату'; duck(true); });
+  function voiceStopped() { voiceBtn.classList.remove('on'); $('voiceText').textContent = 'Шақыруды тыңдау'; duck(false); }
+  voice.addEventListener('pause', function () { if (!voice.muted) voiceStopped(); });
+  voice.addEventListener('ended', function () { voice.currentTime = 0; voiceStopped(); });
+  voiceBtn.addEventListener('click', function () {
+    if (voice.paused) { voice.play().catch(function () {}); } else { voice.pause(); }
+  });
+  function unlockVoice() {
+    // iOS: дыбысты кейін қосу үшін алдымен батырма басылған сәтте «ашып» қоямыз
+    try {
+      voice.muted = true;
+      var p = voice.play();
+      if (p && p.then) p.then(function () { voice.pause(); voice.currentTime = 0; voice.muted = false; })
+                        .catch(function () { voice.muted = false; });
+      else { voice.pause(); voice.muted = false; }
+    } catch (e) { voice.muted = false; }
+  }
+  function autoPlayVoice() {
+    if (!voiceReady || voicePlayedOnce) return;
+    voicePlayedOnce = true;
+    voice.currentTime = 0; voice.play().catch(function () {});
+  }
+
   /* ---------- 3. Шақыруды ашу ---------- */
   var intro = $('intro');
   function openInvite() {
+    unlockVoice();
     playMusic();
+    setTimeout(autoPlayVoice, reduceMotion ? 1500 : 3200);
     intro.classList.add('opening');
     musicBtn.hidden = false;
     setTimeout(function () {

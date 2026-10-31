@@ -132,6 +132,20 @@ section{position:relative;padding:56px 18px}
 .big-text{font-family:var(--serif);font-size:clamp(26px,7.4vw,34px);line-height:1.3;color:#3a2f26;margin:10px 0 0;font-weight:500}
 .big-text b{display:block;font-weight:700;font-style:italic;font-size:1.18em;margin:4px 0}
 
+/* voice */
+.voice{margin-top:22px;display:flex;justify-content:center}
+.voice-btn{display:inline-flex;align-items:center;gap:12px;padding:10px 20px 10px 10px;border-radius:999px;border:1px solid rgba(176,138,79,.55);
+  background:rgba(255,253,249,.8);color:var(--gold-d);font:600 14px var(--sans);letter-spacing:.04em;cursor:pointer;box-shadow:0 8px 22px rgba(140,105,55,.12)}
+.voice-btn .vi{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#c39d62,#94702f);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.voice-btn .vi svg{width:18px;height:18px}
+.voice-btn .ic-pause,.voice-btn.on .ic-play{display:none}
+.voice-btn.on .ic-pause{display:block}
+.vwave{display:flex;align-items:center;gap:3px;height:20px}
+.vwave i{width:3px;height:6px;border-radius:2px;background:var(--gold)}
+.voice-btn.on .vwave i{animation:eq 1s ease-in-out infinite}
+.voice-btn.on .vwave i:nth-child(2){animation-delay:-.3s}.voice-btn.on .vwave i:nth-child(3){animation-delay:-.6s}
+.voice-btn.on .vwave i:nth-child(4){animation-delay:-.15s}.voice-btn.on .vwave i:nth-child(5){animation-delay:-.45s}
+
 /* details */
 .details{display:grid;gap:14px;margin-top:26px}
 .row{display:flex;align-items:center;gap:16px;background:rgba(255,253,249,.75);border:1px solid var(--line);border-radius:18px;padding:16px 18px;backdrop-filter:blur(4px);box-shadow:0 6px 24px rgba(140,105,55,.07)}

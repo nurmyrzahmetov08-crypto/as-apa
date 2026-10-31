@@ -61,6 +61,7 @@
   <span class="bars"><i></i><i></i><i></i><i></i></span>
 </button>
 <audio id="bgm" src="audio/music.mp3" loop preload="auto"></audio>
+<audio id="voice" src="audio/voice.mp3" preload="auto"></audio>
 
 <main>
   <!-- ===== HERO ===== -->
@@ -92,6 +93,13 @@
     <div class="wrap invite-text">
       <img class="deco mosque reveal" src="img/mosque.jpg" alt="">
       <p class="big-text reveal">Аяулы анамыз <b class="gold-text">Хамзақызы Күлжанның</b> жылдық асына шақырамыз.</p>
+      <div class="voice reveal" id="voiceBox" hidden>
+        <button class="voice-btn" id="voiceBtn" type="button" aria-label="Шақыруды тыңдау">
+          <span class="vi" aria-hidden="true"><svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><svg viewBox="0 0 24 24" class="ic-pause"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg></span>
+          <span class="vt" id="voiceText">Шақыруды тыңдау</span>
+          <span class="vwave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        </button>
+      </div>
       <svg class="orn reveal" aria-hidden="true" style="margin-top:24px"><use href="#orn"/></svg>
     </div>
   </section>
