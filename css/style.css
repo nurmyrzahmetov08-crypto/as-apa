@@ -103,7 +103,7 @@ img{display:block;max-width:100%}
 .frame-cap{position:absolute;left:-1px;right:-1px;top:-118px;height:120px;width:calc(100% + 2px)}
 .crescent{width:64px;height:64px;margin:-78px auto 26px;display:block;filter:drop-shadow(0 3px 6px rgba(138,102,49,.25))}
 .title{font-family:var(--serif);font-style:italic;font-weight:700;line-height:.86;margin:18px 0 10px;
-  font-size:clamp(66px,19vw,112px);letter-spacing:-.01em;padding:0 .14em;
+  font-size:clamp(64px,18vw,100px);letter-spacing:-.01em;padding:0 .16em;
   filter:drop-shadow(0 2px 1px rgba(110,80,35,.22)) drop-shadow(0 8px 18px rgba(176,138,79,.16))}
 .title span{display:block}
 .title span:last-child{padding-left:.2em}
@@ -127,6 +127,11 @@ section{position:relative;padding:56px 18px}
 .h2{font-family:var(--serif);font-style:italic;font-weight:700;text-align:center;font-size:clamp(36px,10vw,46px);line-height:1.02;margin:0}
 
 .invite-text{text-align:center}
+.portrait{position:relative;width:min(76%,290px);margin:10px auto 26px}
+.portrait::before{content:"";position:absolute;inset:-12px;border:1px solid rgba(176,138,79,.45);border-radius:999px 999px 26px 26px;pointer-events:none}
+.arch{padding:7px;border-radius:999px 999px 20px 20px;background:linear-gradient(180deg,#e9d3a2,#b08a4f 50%,#e3c995);box-shadow:0 22px 50px rgba(120,90,50,.25)}
+.arch img{width:100%;height:auto;border-radius:999px 999px 14px 14px;display:block}
+.portrait-moon{position:absolute;top:-44px;left:50%;transform:translateX(-50%);width:40px;height:40px;filter:drop-shadow(0 2px 4px rgba(138,102,49,.3))}
 .mosque{width:min(52%,230px);margin:0 auto -6px;
   -webkit-mask-image:radial-gradient(65% 62% at 50% 46%,#000 55%,transparent 100%);mask-image:radial-gradient(65% 62% at 50% 46%,#000 55%,transparent 100%)}
 .big-text{font-family:var(--serif);font-size:clamp(26px,7.4vw,34px);line-height:1.3;color:#3a2f26;margin:10px 0 0;font-weight:500}
