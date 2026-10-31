@@ -3,186 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Асқа шақыру — Құлжан анамыздың жылдық асы</title>
-<meta name="description" content="14 қараша, сағат 12:00, Лермонтова 18, Ayaulym hall. Келетініңізді белгілеңіз.">
-<meta property="og:title" content="Асқа шақыру — Құлжан анамыздың жылдық асы">
-<meta property="og:description" content="14 қараша, сағат 12:00 · Лермонтова 18, Ayaulym hall">
+<title>Асқа шақыру — Хамзақызы Құлжан анамыздың жылдық асы</title>
+<meta name="description" content="Аяулы анамыз Хамзақызы Құлжанның жылдық асына шақырамыз. 14 қараша, сағат 12:00 · Лермонтова 18, Ayaulym hall.">
+<meta property="og:title" content="Асқа шақыру">
+<meta property="og:description" content="Аяулы анамыз Хамзақызы Құлжанның жылдық асына шақырамыз. 14 қараша, 12:00 · Ayaulym hall">
 <meta property="og:image" content="invitation.jpg">
+<meta name="theme-color" content="#f6efe4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream:#fbf7f1; --paper:#fffdf9; --gold:#a8834a; --gold-d:#8a6833;
-    --ink:#3b3129; --muted:#7d7064; --line:#e8dccb; --err:#a2453a;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0}
-  body{
-    font-family:Manrope,system-ui,sans-serif; color:var(--ink);
-    background:var(--cream) radial-gradient(ellipse at top,#fff 0%,var(--cream) 60%) no-repeat;
-    line-height:1.5; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:560px;margin:0 auto;padding:20px 16px 48px}
-  .invite{
-    display:block;width:100%;height:auto;border-radius:14px;
-    box-shadow:0 10px 40px rgba(120,90,50,.18);
-  }
-  .card{
-    margin-top:24px;background:var(--paper);border:1px solid var(--line);
-    border-radius:16px;padding:26px 22px;box-shadow:0 4px 20px rgba(120,90,50,.08);
-  }
-  h1{
-    font-family:"Cormorant Garamond",serif;font-weight:600;font-size:30px;
-    color:var(--gold-d);text-align:center;margin:0 0 4px;line-height:1.15;
-  }
-  .sub{text-align:center;color:var(--muted);font-size:14px;margin:0 0 22px}
-  .orn{display:block;margin:0 auto 18px;width:120px;height:14px}
-  label.q{display:block;font-weight:600;font-size:15px;margin:18px 0 8px}
-  label.q small{font-weight:400;color:var(--muted)}
-  input[type=text],input[type=tel],textarea{
-    width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;
-    border:1px solid var(--line);border-radius:10px;padding:12px 14px;outline:none;
-    transition:border-color .15s, box-shadow .15s;
-  }
-  input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(168,131,74,.15)}
-  textarea{min-height:84px;resize:vertical}
-  .choice{display:grid;gap:10px}
-  .opt{position:relative}
-  .opt input{position:absolute;opacity:0;pointer-events:none}
-  .opt span{
-    display:flex;align-items:center;gap:10px;padding:14px 16px;border:1px solid var(--line);
-    border-radius:12px;cursor:pointer;background:#fff;font-weight:500;transition:all .15s;
-  }
-  .opt span::before{
-    content:"";width:18px;height:18px;border-radius:50%;border:2px solid #cdbca3;flex:none;
-    transition:all .15s;
-  }
-  .opt input:checked + span{border-color:var(--gold);background:#fbf4e8}
-  .opt input:checked + span::before{border-color:var(--gold);background:var(--gold);box-shadow:inset 0 0 0 3px #fff}
-  .opt input:focus-visible + span{box-shadow:0 0 0 3px rgba(168,131,74,.25)}
-  .stepper{display:flex;align-items:center;gap:0;width:max-content;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
-  .stepper button{width:48px;height:48px;border:0;background:#fff;font-size:22px;color:var(--gold-d);cursor:pointer}
-  .stepper button:active{background:#f6eee1}
-  .stepper output{width:56px;text-align:center;font-size:18px;font-weight:600}
-  #guestsBlock[hidden]{display:none}
-  .hp{position:absolute;left:-9999px}
-  .btn{
-    margin-top:24px;width:100%;border:0;border-radius:12px;padding:15px;font:inherit;font-size:16px;
-    font-weight:600;color:#fff;background:linear-gradient(180deg,#b8925a,var(--gold-d));cursor:pointer;
-    box-shadow:0 6px 18px rgba(138,104,51,.3);
-  }
-  .btn:disabled{opacity:.6;cursor:default}
-  .err{color:var(--err);font-size:14px;margin-top:10px;min-height:1em}
-  .done{text-align:center;padding:10px 0}
-  .done .big{font-family:"Cormorant Garamond",serif;font-size:28px;color:var(--gold-d);margin:6px 0}
-  .done p{color:var(--muted);margin:6px 0}
-  .done button{margin-top:16px;background:none;border:0;color:var(--gold-d);text-decoration:underline;font:inherit;cursor:pointer}
-  .info{margin-top:20px;text-align:center;font-size:14px;color:var(--muted)}
-  .info a{color:var(--gold-d)}
-  footer{text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--muted);margin-top:26px;font-size:17px}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preload" href="img/roses-tl.jpg" as="image">
 </head>
-<body>
-<div class="wrap">
-  <img class="invite" src="invitation.jpg" alt="Асқа шақыру: марқұм Хамзақызы Құлжан анамыздың жылдық асы, 14 қараша, сағат 12:00, Лермонтова 18, Ayaulym hall" width="900" height="1350">
+<body class="locked pre">
 
-  <div class="card" id="card">
-    <svg class="orn" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7h46M74 7h46" stroke="#c9ad7f" stroke-width="1"/><path d="M60 1l6 6-6 6-6-6z" fill="none" stroke="#a8834a" stroke-width="1.2"/><circle cx="60" cy="7" r="1.6" fill="#a8834a"/></svg>
-    <h1>Келетініңізді белгілеңіз</h1>
-    <p class="sub">Дастарханды дұрыс дайындау үшін жауабыңызды күтеміз</p>
+<!-- Gold gradients & ornament used across the page -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8cf99"/><stop offset=".45" stop-color="#b8904f"/><stop offset="1" stop-color="#8a6631"/></linearGradient>
+    <linearGradient id="gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3d6"/><stop offset="1" stop-color="#f1d9a3"/></linearGradient>
+    <linearGradient id="gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b08a4f" stop-opacity="0"/><stop offset=".25" stop-color="#b08a4f"/><stop offset=".75" stop-color="#b08a4f"/><stop offset="1" stop-color="#b08a4f" stop-opacity="0"/></linearGradient>
+    <symbol id="orn" viewBox="0 0 190 22">
+      <path d="M2 11h62M126 11h62" stroke="url(#gl)" stroke-width="1"/>
+      <path d="M95 3c-4 4-4 12 0 16 4-4 4-12 0-16z" fill="url(#g)"/>
+      <path d="M95 11c-8-7-17-7-22 0 5 7 14 7 22 0zM95 11c8-7 17-7 22 0-5 7-14 7-22 0z" fill="none" stroke="url(#g)" stroke-width="1.1"/>
+      <path d="M73 11c-3-4-7-4-9 0 2 4 6 4 9 0zM117 11c3-4 7-4 9 0-2 4-6 4-9 0z" fill="url(#g)"/>
+      <circle cx="60" cy="11" r="1.5" fill="#b08a4f"/><circle cx="130" cy="11" r="1.5" fill="#b08a4f"/>
+    </symbol>
+    <mask id="cmask"><rect width="64" height="64" fill="#fff"/><circle cx="36" cy="27" r="19" fill="#000"/></mask>
+    <symbol id="moon" viewBox="0 0 64 64">
+      <circle cx="27" cy="33" r="22" mask="url(#cmask)"/>
+      <path d="M47 18l1.9 4.6 4.9.4-3.8 3.2 1.2 4.8-4.2-2.6-4.2 2.6 1.2-4.8-3.8-3.2 4.9-.4z"/>
+    </symbol>
+  </defs>
+</svg>
 
-    <form name="as-rsvp" id="rsvp" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
-      <input type="hidden" name="form-name" value="as-rsvp">
-      <p class="hp"><label>Бос қалдырыңыз <input name="company" tabindex="-1" autocomplete="off"></label></p>
-
-      <label class="q" for="fullname">Аты-жөніңіз</label>
-      <input type="text" id="fullname" name="fullname" autocomplete="name" placeholder="Мысалы: Айгүл Серікқызы" required maxlength="80">
-
-      <label class="q">Асқа келесіз бе?</label>
-      <div class="choice" role="radiogroup">
-        <label class="opt"><input type="radio" name="attend" value="Келемін" required><span>Иә, келемін</span></label>
-        <label class="opt"><input type="radio" name="attend" value="Келе алмаймын"><span>Өкінішке қарай, келе алмаймын</span></label>
-      </div>
-
-      <div id="guestsBlock" hidden>
-        <label class="q">Неше адам келесіздер? <small>(өзіңізді қоса)</small></label>
-        <div class="stepper">
-          <button type="button" id="minus" aria-label="Азайту">−</button>
-          <output id="countOut">1</output>
-          <button type="button" id="plus" aria-label="Көбейту">+</button>
-        </div>
-        <input type="hidden" name="guests" id="guests" value="1">
-      </div>
-
-      <label class="q" for="phone">Телефон <small>(міндетті емес)</small></label>
-      <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+7 7__ ___ __ __" maxlength="20">
-
-      <label class="q" for="note">Тілек немесе ескерту <small>(міндетті емес)</small></label>
-      <textarea id="note" name="note" maxlength="500" placeholder="Дұға, тілек немесе сұрағыңыз…"></textarea>
-
-      <button class="btn" type="submit" id="submit">Жауапты жіберу</button>
-      <div class="err" id="err" role="alert"></div>
-    </form>
-
-    <div class="done" id="done" hidden>
-      <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="#a8834a" stroke-width="1.5"/><path d="M17 28l7 7 14-15" fill="none" stroke="#a8834a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="big" id="doneTitle">Рақмет!</div>
-      <p id="doneText">Жауабыңыз қабылданды.</p>
-      <button type="button" id="again">Тағы бір жауап жіберу</button>
-    </div>
+<!-- ===== INTRO: шақыруды ашу ===== -->
+<div class="intro" id="intro" role="dialog" aria-label="Шақыру">
+  <div class="door l"></div><div class="door r"></div>
+  <img class="intro-roses tl" src="img/roses-tl.jpg" alt="">
+  <img class="intro-roses br" src="img/roses-br.jpg" alt="">
+  <div class="intro-inner">
+    <div class="seal"><svg aria-hidden="true" fill="url(#gd)"><use href="#moon"/></svg></div>
+    <p class="dear">Құрметті</p>
+    <p class="guest" id="guestName">қонағымыз</p>
+    <p class="msg">Сізге арналған шақыру</p>
+    <button class="open-btn" id="openBtn" type="button">
+      Шақыруды ашу
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+    <div class="hint">♪ әуенмен ашылады</div>
   </div>
-
-  <div class="info">
-    📍 Лермонтова 18, Ayaulym hall ·
-    <a href="https://2gis.kz/search/%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%2018%20Ayaulym%20hall" target="_blank" rel="noopener">2GIS-те ашу</a>
-  </div>
-  <footer>Сіздердің келуіңіз біз үшін үлкен құрмет.</footer>
 </div>
 
-<script>
-(function(){
-  var form=document.getElementById('rsvp'), err=document.getElementById('err'),
-      block=document.getElementById('guestsBlock'), guests=document.getElementById('guests'),
-      out=document.getElementById('countOut'), btn=document.getElementById('submit');
-  var n=1;
-  function setN(v){n=Math.max(1,Math.min(20,v));guests.value=n;out.textContent=n;}
-  document.getElementById('minus').onclick=function(){setN(n-1)};
-  document.getElementById('plus').onclick=function(){setN(n+1)};
-  form.querySelectorAll('input[name=attend]').forEach(function(r){
-    r.addEventListener('change',function(){
-      var yes=form.attend.value==='Келемін';
-      block.hidden=!yes; guests.value=yes?n:0;
-    });
-  });
-  form.addEventListener('submit',function(e){
-    e.preventDefault(); err.textContent='';
-    var name=form.fullname.value.trim();
-    if(name.length<2){err.textContent='Аты-жөніңізді жазыңыз.';form.fullname.focus();return;}
-    if(!form.attend.value){err.textContent='«Келемін» немесе «Келе алмаймын» таңдаңыз.';return;}
-    if(form.attend.value!=='Келемін') guests.value=0;
-    btn.disabled=true; btn.textContent='Жіберілуде…';
-    var body=new URLSearchParams(new FormData(form)).toString();
-    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
-      .then(function(r){ if(!r.ok) throw new Error(r.status); showDone(name, form.attend.value==='Келемін'); })
-      .catch(function(){ err.textContent='Жіберу мүмкін болмады. Интернетті тексеріп, қайта көріңіз.'; })
-      .finally(function(){ btn.disabled=false; btn.textContent='Жауапты жіберу'; });
-  });
-  function showDone(name,yes){
-    form.hidden=true; document.getElementById('done').hidden=false;
-    document.querySelector('#card h1').hidden=true; document.querySelector('#card .sub').hidden=true;
-    document.getElementById('doneTitle').textContent='Рақмет, '+name+'!';
-    document.getElementById('doneText').textContent = yes
-      ? '14 қараша, сағат 12:00-де Ayaulym hall-да күтеміз.'
-      : 'Хабарлағаныңызға рақмет. Анамызды дұғаңызда еске алыңыз.';
-    document.getElementById('card').scrollIntoView({behavior:'smooth',block:'start'});
-  }
-  document.getElementById('again').onclick=function(){
-    form.reset(); setN(1); block.hidden=true;
-    form.hidden=false; document.getElementById('done').hidden=true;
-    document.querySelector('#card h1').hidden=false; document.querySelector('#card .sub').hidden=false;
-  };
-})();
-</script>
+<!-- music toggle -->
+<button class="music" id="musicBtn" type="button" aria-label="Әуенді қосу / өшіру" hidden>
+  <span class="bars"><i></i><i></i><i></i><i></i></span>
+</button>
+<audio id="bgm" src="audio/music.mp3" loop preload="auto"></audio>
+
+<main>
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <canvas id="dust" aria-hidden="true"></canvas>
+    <img class="deco roses-tl" src="img/roses-tl.jpg" alt="">
+    <img class="deco dove" src="img/dove.jpg" alt="">
+    <img class="deco roses-br" src="img/roses-br.jpg" alt="">
+
+    <div class="frame">
+      <svg class="frame-cap" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0.5 120 V78 Q0.5 70 8 70 H96 Q116 70 128 52 Q140 32 150 10 Q160 32 172 52 Q184 70 204 70 H292 Q299.5 70 299.5 78 V120"
+              fill="none" stroke="#b08a4f" stroke-opacity=".75" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <svg class="crescent" aria-hidden="true" fill="url(#g)"><use href="#moon"/></svg>
+      <svg class="orn" aria-hidden="true"><use href="#orn"/></svg>
+      <h1 class="title gold-text"><span>Асқа</span><span>шақыру</span></h1>
+      <svg class="orn" aria-hidden="true"><use href="#orn"/></svg>
+      <div class="name"><small>марқұм</small>Хамзақызы Құлжан</div>
+    </div>
+
+    <a class="scroll" href="#invite">Төмен
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+  </header>
+
+  <!-- ===== INVITATION TEXT ===== -->
+  <section id="invite">
+    <div class="wrap invite-text">
+      <img class="deco mosque reveal" src="img/mosque.jpg" alt="">
+      <p class="big-text reveal">Аяулы анамыз <b class="gold-text">Хамзақызы Құлжанның</b> жылдық асына шақырамыз.</p>
+      <svg class="orn reveal" aria-hidden="true" style="margin-top:24px"><use href="#orn"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== DETAILS ===== -->
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <p class="eyebrow reveal">Ас өтетін күн мен орын</p>
+      <h2 class="h2 gold-text reveal">Қашан және қайда</h2>
+      <div class="details">
+        <div class="row reveal">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r=".9" fill="currentColor"/><circle cx="12" cy="14.5" r=".9" fill="currentColor"/><circle cx="15.5" cy="14.5" r=".9" fill="currentColor"/></svg></div>
+          <div><div class="k">Күні</div><div class="v">14 қараша <small>· сенбі</small></div>
+            <div class="links">
+              <button class="lnk" type="button" id="icsBtn">Күнтізбеге қосу</button>
+              <a class="lnk" id="gcalLink" target="_blank" rel="noopener" href="#">Google Calendar</a>
+            </div>
+          </div>
+        </div>
+        <div class="row reveal">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg></div>
+          <div><div class="k">Уақыты</div><div class="v">сағат 12:00</div></div>
+        </div>
+        <div class="row reveal">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0113 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></div>
+          <div><div class="k">Мекенжайы</div><div class="v">Лермонтова 18<br><small>Ayaulym hall</small></div>
+            <div class="links">
+              <a class="lnk" href="https://2gis.kz/search/%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%2018%20Ayaulym%20hall" target="_blank" rel="noopener">2GIS картасы</a>
+              <a class="lnk" href="https://yandex.kz/maps/?text=%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%2018%20Ayaulym%20hall" target="_blank" rel="noopener">Яндекс карта</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="countWrap">
+        <p class="eyebrow count-label reveal">Асқа дейін қалды</p>
+        <div class="count reveal">
+          <div><b id="cd">–</b><span>күн</span></div>
+          <div><b id="ch">–</b><span>сағат</span></div>
+          <div><b id="cm">–</b><span>минут</span></div>
+          <div><b id="cs">–</b><span>секунд</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DUA ===== -->
+  <section style="padding-top:20px;padding-bottom:20px">
+    <div class="wrap dua reveal">
+      <img class="deco lantern" src="img/lantern.jpg" alt="">
+      <p>Алла тағала марқұмның иманын саламат, жатқан жерін жайлы етсін.<small>Әмин</small></p>
+    </div>
+  </section>
+
+  <!-- ===== RSVP ===== -->
+  <section id="rsvp-section">
+    <div class="wrap">
+      <p class="eyebrow reveal">Жауабыңызды күтеміз</p>
+      <h2 class="h2 gold-text reveal">Келетініңізді белгілеңіз</h2>
+      <p class="sub reveal">Дастарханды дұрыс дайындау үшін</p>
+
+      <div class="card reveal" id="card">
+        <form name="as-rsvp" id="rsvp" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
+          <input type="hidden" name="form-name" value="as-rsvp">
+          <p class="hp"><label>Бос қалдырыңыз <input name="company" tabindex="-1" autocomplete="off"></label></p>
+
+          <label class="q" for="fullname" style="margin-top:4px">Аты-жөніңіз</label>
+          <input type="text" id="fullname" name="fullname" autocomplete="name" placeholder="Мысалы: Айгүл Серікқызы" required maxlength="80">
+
+          <label class="q">Асқа келесіз бе?</label>
+          <div class="choice" role="radiogroup">
+            <label class="opt"><input type="radio" name="attend" value="Келемін" required><span>Иә, келемін</span></label>
+            <label class="opt"><input type="radio" name="attend" value="Келе алмаймын"><span>Өкінішке қарай, келе алмаймын</span></label>
+          </div>
+
+          <div id="guestsBlock" hidden>
+            <label class="q">Неше адам келесіздер? <small>(өзіңізді қоса)</small></label>
+            <div class="stepper">
+              <button type="button" id="minus" aria-label="Азайту">−</button>
+              <output id="countOut">1</output>
+              <button type="button" id="plus" aria-label="Көбейту">+</button>
+            </div>
+            <input type="hidden" name="guests" id="guests" value="1">
+          </div>
+
+          <label class="q" for="phone">Телефон <small>(міндетті емес)</small></label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+7 7__ ___ __ __" maxlength="20">
+
+          <label class="q" for="note">Ескерту <small>(міндетті емес)</small></label>
+          <textarea id="note" name="note" maxlength="300" placeholder="Мысалы: сәл кешігіп келемін"></textarea>
+
+          <button class="btn" type="submit" id="submit">Жауапты жіберу</button>
+          <div class="err" id="err" role="alert"></div>
+        </form>
+
+        <div class="done" id="done" hidden>
+          <svg width="58" height="58" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="#b08a4f" stroke-width="1.5"/><path d="M17 28l7 7 14-15" fill="none" stroke="#b08a4f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="big" id="doneTitle">Рақмет!</div>
+          <p id="doneText">Жауабыңыз қабылданды.</p>
+          <button type="button" id="again">Жауапты өзгерту</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <svg class="orn" aria-hidden="true" style="margin-bottom:18px"><use href="#orn"/></svg>
+    <p class="reveal">Сіздердің келуіңіз<br>біз үшін үлкен құрмет.<span class="sign">Отбасымыздың атынан</span></p>
+    <img class="deco fr l" src="img/roses-br.jpg" alt="">
+    <img class="deco fr r" src="img/roses-br.jpg" alt="">
+  </footer>
+</main>
+
+<script src="js/script.js" defer></script>
 </body>
 </html>
