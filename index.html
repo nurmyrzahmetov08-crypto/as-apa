@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Асқа шақыру — Құлжан анамыздың жылдық асы</title>
+<meta name="description" content="14 қараша, сағат 12:00, Лермонтова 18, Ayaulym hall. Келетініңізді белгілеңіз.">
+<meta property="og:title" content="Асқа шақыру — Құлжан анамыздың жылдық асы">
+<meta property="og:description" content="14 қараша, сағат 12:00 · Лермонтова 18, Ayaulym hall">
+<meta property="og:image" content="invitation.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fbf7f1; --paper:#fffdf9; --gold:#a8834a; --gold-d:#8a6833;
+    --ink:#3b3129; --muted:#7d7064; --line:#e8dccb; --err:#a2453a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:Manrope,system-ui,sans-serif; color:var(--ink);
+    background:var(--cream) radial-gradient(ellipse at top,#fff 0%,var(--cream) 60%) no-repeat;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:20px 16px 48px}
+  .invite{
+    display:block;width:100%;height:auto;border-radius:14px;
+    box-shadow:0 10px 40px rgba(120,90,50,.18);
+  }
+  .card{
+    margin-top:24px;background:var(--paper);border:1px solid var(--line);
+    border-radius:16px;padding:26px 22px;box-shadow:0 4px 20px rgba(120,90,50,.08);
+  }
+  h1{
+    font-family:"Cormorant Garamond",serif;font-weight:600;font-size:30px;
+    color:var(--gold-d);text-align:center;margin:0 0 4px;line-height:1.15;
+  }
+  .sub{text-align:center;color:var(--muted);font-size:14px;margin:0 0 22px}
+  .orn{display:block;margin:0 auto 18px;width:120px;height:14px}
+  label.q{display:block;font-weight:600;font-size:15px;margin:18px 0 8px}
+  label.q small{font-weight:400;color:var(--muted)}
+  input[type=text],input[type=tel],textarea{
+    width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;
+    border:1px solid var(--line);border-radius:10px;padding:12px 14px;outline:none;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(168,131,74,.15)}
+  textarea{min-height:84px;resize:vertical}
+  .choice{display:grid;gap:10px}
+  .opt{position:relative}
+  .opt input{position:absolute;opacity:0;pointer-events:none}
+  .opt span{
+    display:flex;align-items:center;gap:10px;padding:14px 16px;border:1px solid var(--line);
+    border-radius:12px;cursor:pointer;background:#fff;font-weight:500;transition:all .15s;
+  }
+  .opt span::before{
+    content:"";width:18px;height:18px;border-radius:50%;border:2px solid #cdbca3;flex:none;
+    transition:all .15s;
+  }
+  .opt input:checked + span{border-color:var(--gold);background:#fbf4e8}
+  .opt input:checked + span::before{border-color:var(--gold);background:var(--gold);box-shadow:inset 0 0 0 3px #fff}
+  .opt input:focus-visible + span{box-shadow:0 0 0 3px rgba(168,131,74,.25)}
+  .stepper{display:flex;align-items:center;gap:0;width:max-content;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  .stepper button{width:48px;height:48px;border:0;background:#fff;font-size:22px;color:var(--gold-d);cursor:pointer}
+  .stepper button:active{background:#f6eee1}
+  .stepper output{width:56px;text-align:center;font-size:18px;font-weight:600}
+  #guestsBlock[hidden]{display:none}
+  .hp{position:absolute;left:-9999px}
+  .btn{
+    margin-top:24px;width:100%;border:0;border-radius:12px;padding:15px;font:inherit;font-size:16px;
+    font-weight:600;color:#fff;background:linear-gradient(180deg,#b8925a,var(--gold-d));cursor:pointer;
+    box-shadow:0 6px 18px rgba(138,104,51,.3);
+  }
+  .btn:disabled{opacity:.6;cursor:default}
+  .err{color:var(--err);font-size:14px;margin-top:10px;min-height:1em}
+  .done{text-align:center;padding:10px 0}
+  .done .big{font-family:"Cormorant Garamond",serif;font-size:28px;color:var(--gold-d);margin:6px 0}
+  .done p{color:var(--muted);margin:6px 0}
+  .done button{margin-top:16px;background:none;border:0;color:var(--gold-d);text-decoration:underline;font:inherit;cursor:pointer}
+  .info{margin-top:20px;text-align:center;font-size:14px;color:var(--muted)}
+  .info a{color:var(--gold-d)}
+  footer{text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--muted);margin-top:26px;font-size:17px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="invite" src="invitation.jpg" alt="Асқа шақыру: марқұм Хамзақызы Құлжан анамыздың жылдық асы, 14 қараша, сағат 12:00, Лермонтова 18, Ayaulym hall" width="900" height="1350">
+
+  <div class="card" id="card">
+    <svg class="orn" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7h46M74 7h46" stroke="#c9ad7f" stroke-width="1"/><path d="M60 1l6 6-6 6-6-6z" fill="none" stroke="#a8834a" stroke-width="1.2"/><circle cx="60" cy="7" r="1.6" fill="#a8834a"/></svg>
+    <h1>Келетініңізді белгілеңіз</h1>
+    <p class="sub">Дастарханды дұрыс дайындау үшін жауабыңызды күтеміз</p>
+
+    <form name="as-rsvp" id="rsvp" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
+      <input type="hidden" name="form-name" value="as-rsvp">
+      <p class="hp"><label>Бос қалдырыңыз <input name="company" tabindex="-1" autocomplete="off"></label></p>
+
+      <label class="q" for="fullname">Аты-жөніңіз</label>
+      <input type="text" id="fullname" name="fullname" autocomplete="name" placeholder="Мысалы: Айгүл Серікқызы" required maxlength="80">
+
+      <label class="q">Асқа келесіз бе?</label>
+      <div class="choice" role="radiogroup">
+        <label class="opt"><input type="radio" name="attend" value="Келемін" required><span>Иә, келемін</span></label>
+        <label class="opt"><input type="radio" name="attend" value="Келе алмаймын"><span>Өкінішке қарай, келе алмаймын</span></label>
+      </div>
+
+      <div id="guestsBlock" hidden>
+        <label class="q">Неше адам келесіздер? <small>(өзіңізді қоса)</small></label>
+        <div class="stepper">
+          <button type="button" id="minus" aria-label="Азайту">−</button>
+          <output id="countOut">1</output>
+          <button type="button" id="plus" aria-label="Көбейту">+</button>
+        </div>
+        <input type="hidden" name="guests" id="guests" value="1">
+      </div>
+
+      <label class="q" for="phone">Телефон <small>(міндетті емес)</small></label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+7 7__ ___ __ __" maxlength="20">
+
+      <label class="q" for="note">Тілек немесе ескерту <small>(міндетті емес)</small></label>
+      <textarea id="note" name="note" maxlength="500" placeholder="Дұға, тілек немесе сұрағыңыз…"></textarea>
+
+      <button class="btn" type="submit" id="submit">Жауапты жіберу</button>
+      <div class="err" id="err" role="alert"></div>
+    </form>
+
+    <div class="done" id="done" hidden>
+      <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="#a8834a" stroke-width="1.5"/><path d="M17 28l7 7 14-15" fill="none" stroke="#a8834a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="big" id="doneTitle">Рақмет!</div>
+      <p id="doneText">Жауабыңыз қабылданды.</p>
+      <button type="button" id="again">Тағы бір жауап жіберу</button>
+    </div>
+  </div>
+
+  <div class="info">
+    📍 Лермонтова 18, Ayaulym hall ·
+    <a href="https://2gis.kz/search/%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%2018%20Ayaulym%20hall" target="_blank" rel="noopener">2GIS-те ашу</a>
+  </div>
+  <footer>Сіздердің келуіңіз біз үшін үлкен құрмет.</footer>
+</div>
+
+<script>
+(function(){
+  var form=document.getElementById('rsvp'), err=document.getElementById('err'),
+      block=document.getElementById('guestsBlock'), guests=document.getElementById('guests'),
+      out=document.getElementById('countOut'), btn=document.getElementById('submit');
+  var n=1;
+  function setN(v){n=Math.max(1,Math.min(20,v));guests.value=n;out.textContent=n;}
+  document.getElementById('minus').onclick=function(){setN(n-1)};
+  document.getElementById('plus').onclick=function(){setN(n+1)};
+  form.querySelectorAll('input[name=attend]').forEach(function(r){
+    r.addEventListener('change',function(){
+      var yes=form.attend.value==='Келемін';
+      block.hidden=!yes; guests.value=yes?n:0;
+    });
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); err.textContent='';
+    var name=form.fullname.value.trim();
+    if(name.length<2){err.textContent='Аты-жөніңізді жазыңыз.';form.fullname.focus();return;}
+    if(!form.attend.value){err.textContent='«Келемін» немесе «Келе алмаймын» таңдаңыз.';return;}
+    if(form.attend.value!=='Келемін') guests.value=0;
+    btn.disabled=true; btn.textContent='Жіберілуде…';
+    var body=new URLSearchParams(new FormData(form)).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); showDone(name, form.attend.value==='Келемін'); })
+      .catch(function(){ err.textContent='Жіберу мүмкін болмады. Интернетті тексеріп, қайта көріңіз.'; })
+      .finally(function(){ btn.disabled=false; btn.textContent='Жауапты жіберу'; });
+  });
+  function showDone(name,yes){
+    form.hidden=true; document.getElementById('done').hidden=false;
+    document.querySelector('#card h1').hidden=true; document.querySelector('#card .sub').hidden=true;
+    document.getElementById('doneTitle').textContent='Рақмет, '+name+'!';
+    document.getElementById('doneText').textContent = yes
+      ? '14 қараша, сағат 12:00-де Ayaulym hall-да күтеміз.'
+      : 'Хабарлағаныңызға рақмет. Анамызды дұғаңызда еске алыңыз.';
+    document.getElementById('card').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  document.getElementById('again').onclick=function(){
+    form.reset(); setN(1); block.hidden=true;
+    form.hidden=false; document.getElementById('done').hidden=true;
+    document.querySelector('#card h1').hidden=false; document.querySelector('#card .sub').hidden=false;
+  };
+})();
+</script>
+</body>
+</html>
